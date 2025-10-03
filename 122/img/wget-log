@@ -1,0 +1,11 @@
+--2025-10-03 05:17:34--  https://gym-nyc.com/cdn/shop/files/Unknown-8.jpg?v=1744155848
+Resolving gym-nyc.com (gym-nyc.com)... 23.227.38.32
+Connecting to gym-nyc.com (gym-nyc.com)|23.227.38.32|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 921131 (900K) [image/jpeg]
+Saving to: ‘Unknown-8.jpg?v=1744155848’
+
+Unknown-8.jpg?v=1744155848      0%[                                                 ]       0  --.-KB/s               Unknown-8.jpg?v=1744155848    100%[================================================>] 899.54K  --.-KB/s    in 0.08s   
+
+2025-10-03 05:17:35 (11.4 MB/s) - ‘Unknown-8.jpg?v=1744155848’ saved [921131/921131]
+
