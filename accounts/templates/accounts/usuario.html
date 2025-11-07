@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inicio - Gym</title>
+</head>
+<body>
+    <h2>Bienvenido al Gimnasio, {{ user.username }} 🏋️</h2>
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+             <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+
+</body>
+</html>

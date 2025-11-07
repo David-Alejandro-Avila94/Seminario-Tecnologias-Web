@@ -1,15 +1,206 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Registro - Gym</title>
-</head>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prime GYM - Transforma tu vida</title>
+    <!--Font awesome icons-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+    />
+    <!--Styles CSS-->
+    <link rel="stylesheet" href="{% static 'accounts/css/styles.css' %}" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#"
+          >Prime<span class="text-white">GYM</span></a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'home'%}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'home'%}#about">Sobre Nosotros</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'home'%}#pricing">Tarifas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'home'%}#contact">Unirse</a>
+            </li>
+            <li class="nav-item ms-2">
+              <a class="btn btn-primary" href="{% url 'login'%}">Log in</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 <body>
-    <h2>Crear cuenta</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Registrarme</button>
-    </form>
-    <p>¿Ya tenés cuenta? <a href="{% url 'login' %}">Iniciá sesión</a></p>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="auth-container">
+                    <div class="row g-0 vh-80">
+                        <div class="col-lg-6">
+                            <div class="auth-content h-100">
+                                <a href="{% url 'home' %}" class="logo">Prime<span class="text-white">GYM</span></a>
+                                <h2 class="mb-4">Join Prime GYM</h2>
+                                <p class="text-muted mb-4">Create your account and start your fitness journey today.</p>
+                                
+                                <form method="post">
+                                    {% csrf_token %}
+                                    
+                                    {% if form.errors %}
+                                    <div class="alert alert-danger">
+                                        Please correct the errors below.
+                                    </div>
+                                    {% endif %}
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                {{form.first_name.label_tag}}
+                                                {{form.first_name}}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                {{form.last_name.label_tag}}
+                                                {{form.last_name}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        {{form.email.label_tag}}
+                                        {{form.email}}
+                                        {% if form.email.errors %}
+                                        <div class="text-danger small mt-1">
+                                            {{ form.email.errors }}
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        {{form.username.label_tag}}
+                                        {{form.username}}
+                                        {% if form.username.errors %}
+                                        <div class="text-danger small mt-1">
+                                            {{ form.username.errors }}
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                {{form.password1.label_tag}}
+                                                {{form.password1}}
+                                                {% if form.password1.errors %}
+                                                <div class="text-danger small mt-1">
+                                                    {{ form.password1.errors }}
+                                                </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                {{form.password2.label_tag}}
+                                                {{form.password2}}
+                                                {% if form.password2.errors %}
+                                                <div class="text-danger small mt-1">
+                                                    {{ form.password2.errors }}
+                                                </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" class="form-check-input" id="terms" required>
+                                        <label class="form-check-label" for="terms">
+                                            I agree to the <a href="#" class="auth-link">Terms of Service</a> and <a href="#" class="auth-link">Privacy Policy</a>
+                                        </label>
+                                    </div>
+                                    
+                            
+                                    
+                                    <button type="submit" class="btn btn-primary">Create Account</button>
+                                    
+                                   
+                                    
+                                    <div class="text-center mt-4">
+                                        <p>Already have an account? <a href="{% url 'login' %}" class="auth-link">Login here</a></p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 d-none d-lg-block">
+                            <div class="auth-left h-100">
+                                <div class="text-center text-white">
+                                    <h2 class="mb-4">Start Your Journey!</h2>
+                                    <p class="lead mb-5">Join thousands of members transforming their lives at IronFit Gym.</p>
+                                    
+                                    <div class="benefits text-start">
+                                        <div class="benefit-item">
+                                            <i class="bi bi-check-circle-fill"></i>
+                                            <span>Personalized workout plans</span>
+                                        </div>
+                                        <div class="benefit-item">
+                                            <i class="bi bi-check-circle-fill"></i>
+                                            <span>Progress tracking</span>
+                                        </div>
+                                        <div class="benefit-item">
+                                            <i class="bi bi-check-circle-fill"></i>
+                                            <span>Expert trainer access</span>
+                                        </div>
+                                        <div class="benefit-item">
+                                            <i class="bi bi-check-circle-fill"></i>
+                                            <span>Class booking privileges</span>
+                                        </div>
+                                        <div class="benefit-item">
+                                            <i class="bi bi-check-circle-fill"></i>
+                                            <span>Nutrition guidance</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mt-5">
+                                        <i class="bi bi-person-plus display-1 text-primary"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
