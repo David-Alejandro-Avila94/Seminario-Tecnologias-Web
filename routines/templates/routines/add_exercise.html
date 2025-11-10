@@ -1,0 +1,32 @@
+{% extends 'routines/base_routines.html' %}
+{% block title %}Add Exercise{% endblock %}
+
+{% block content %}
+<h2>Agregar ejercicio al día {{ day.name }}</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="text" name="query" placeholder="Buscar ejercicio..." required>
+    <button type="submit">Buscar</button>
+</form>
+
+{% if results %}
+    <h3>Resultados para "{{ query }}"</h3>
+    <ul>
+    {% for ex in results %}
+        <li>
+            <img src="{{ ex.gifUrl }}" width="80" alt="{{ ex.name }}">
+            <strong>{{ ex.name }}</strong> - {{ ex.target }}<br>
+            <form method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="exercise_id" value="{{ ex.id }}">
+                <input type="hidden" name="name" value="{{ ex.name }}">
+                <input type="hidden" name="target" value="{{ ex.target }}">
+                <input type="hidden" name="gif_url" value="{{ ex.gifUrl }}">
+                <button type="submit">Agregar</button>
+            </form>
+        </li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}

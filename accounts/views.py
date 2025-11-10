@@ -18,4 +18,4 @@ def register(request):
 
 @login_required
 def usuario(request):
-    return render(request, 'accounts/usuario.html')
+    return redirect('routine_list')

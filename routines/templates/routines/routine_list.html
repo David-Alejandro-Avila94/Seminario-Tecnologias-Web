@@ -1,0 +1,16 @@
+{% extends 'routines/base_routines.html' %}
+{% block title %}My Routines{% endblock %}
+
+{% block content %}
+
+
+<h2>Your Routines</h2>
+<a href="{% url 'create_routine' %}" class="btn btn-primary">New Routine</a>
+<ul>
+  {% for routine in routines %}
+    <li><a href="{% url 'routine_detail' routine.id %}">{{ routine.name }}</a></li>
+  {% empty %}
+    <p>No routines yet.</p>
+  {% endfor %}
+</ul>
+{% endblock %}

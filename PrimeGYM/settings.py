@@ -132,6 +132,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'gym',
+    'routines',
 ]
 
 LOGIN_REDIRECT_URL = 'usuario'

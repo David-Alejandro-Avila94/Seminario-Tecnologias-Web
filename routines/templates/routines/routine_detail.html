@@ -1,0 +1,27 @@
+{% extends 'routines/base_routines.html' %}
+{% block content %}
+<h2>{{ routine.name }}</h2>
+
+{% if routine.days.all %}
+  {% for day in routine.days.all %}
+    <h3>{{ day.name }}</h3>
+    <a href="{% url 'add_exercise' day.id %}">Add Exercise</a>
+
+    {% if day.exercises.all %}
+      <ul>
+        {% for ex in day.exercises.all %}
+          <li>
+            <img src="{{ ex.gif_url }}" width="80"> 
+            {{ ex.name }} - {{ ex.target }}
+            <a href="{% url 'delete_exercise' ex.id %}">❌ Delete</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No exercises yet.</p>
+    {% endif %}
+  {% endfor %}
+{% else %}
+  <p>No days yet. <a href="{% url 'add_day' routine.id %}">Add one</a></p>
+{% endif %}
+{% endblock %}
